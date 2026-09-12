@@ -1,1 +1,106 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartShelf - School Library</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- NAVIGATION -->
+<nav class="navbar">
+ <div class="logo">
+SmartShelf
+ </div>
+  <div class="nav-links">
+<button onclick="showStudent()">
+ Student
+</button>
+<button onclick="showLibrarian()">
+ Librarian
+</button>
+</div>
+</nav>
+<!-- STUDENT SECTION -->
+<main id="studentSection">
+<section class="hero">
+<h1>Find Your Book. Instantly.</h1>
+<p>
+ Search our school library and find exactly where your book is.
+</p>
+<div class="search-box">
+<input
+type="text"
+id="searchInput"
+placeholder="Search by title, author or category..."
+ >
+<button onclick="searchBooks()">
+Search
+</button>
+</div>
+</section>
+<!-- CATEGORIES -->
+<section class="categories">
+<h2>Browse Categories</h2>
+<div class="category-container">
+ <button onclick="filterCategory('Physics')">
+Physics
+</button>
+ <button onclick="filterCategory('Mathematics')">
+Mathematics
+</button>
+ <button onclick="filterCategory('Computer Science')">
+Computer Science
+</button>
+ <button onclick="filterCategory('Literature')">
+Literature
+</button>
+</div>
+</section>
+<!-- BOOKS -->
+<section class="books-section">
+<h2>Library Books</h2>
+<div
+id="bookContainer"
+class="book-container"
+>
+<!-- Books appear here -->
+</div>
+</section>
+</main>
+<!-- LIBRARIAN SECTION -->
+  <main
+id="librarianSection"
+class="hidden"
+>
+<section class="dashboard">
+<h1> Librarian Dashboard</h1>
+<p>
+ Manage the school library.
+</p>
+<div class="stats">
+<div class="stat-card">
+<h3>Total Books</h3>
+<p id="totalBooks">0</p>
+</div>
+<div class="stat-card">
+<h3>Available</h3>
+<p id="availableBooks">0</p>
+</div>
+<div class="stat-card">
+<h3>Borrowed</h3>
+<p id="borrowedBooks">0</p>
+</div>
+<div class="stat-card">
+<h3>Overdue</h3>
+<p id="overdueBooks">3</p>
+</div>
+</div>
+<h2>Manage Books</h2>
+<div id="librarianBooks">
+</div>
+</section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
