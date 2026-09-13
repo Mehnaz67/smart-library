@@ -227,3 +227,122 @@ function showRecommendations(bookId) {
   
   alert(message);
 }
+// STUDENT / LIBRARIAN SWITCH
+// ========================================
+function showStudent() {
+document
+.getElementById("studentSection")
+.classList.remove("hidden");
+document
+.getElementById("librarianSection")
+.classList.add("hidden");
+}
+function showLibrarian() {
+document
+.getElementById("studentSection")
+.classList.add("hidden");
+document
+.getElementById("librarianSection")
+.classList.remove("hidden");
+displayLibrarianBooks();
+updateDashboard();
+}
+// ========================================
+// LIBRARIAN BOOKS
+// ========================================
+function displayLibrarianBooks() {
+const container =
+document.getElementById("librarianBooks");
+container.innerHTML = "";
+books.forEach(book => {
+container.innerHTML += `
+            <div class="library-row">
+ <div>
+                    <strong>
+                        📖 ${book.title}
+                    </strong>
+                    <br>
+                    Shelf: ${book.shelf}
+                    <br>
+                    Available:
+${book.available}/${book.copies}
+                </div>
+                <div>
+                    <button
+                        onclick="borrowBook(${book.id})">
+                        ➖ Borrow
+                    </button>
+                    <button
+                        onclick="returnBook(${book.id})">
+                        ➕ Return
+                    </button>
+                </div>
+            </div>
+        `;
+});
+}
+// ========================================
+// BORROW BOOK
+// ========================================
+function borrowBook(bookId) {
+const book =
+books.find(book =>
+book.id === bookId
+);
+if (book.available <= 0) {
+alert(
+"❌ No copies available."
+);
+return;
+}
+book.available--;
+displayLibrarianBooks();
+updateDashboard();
+displayBooks(books);
+}
+// ========================================
+// RETURN BOOK
+// ========================================
+function returnBook(bookId) {
+const book =
+books.find(book =>
+book.id === bookId
+);
+if (book.available >= book.copies) {
+alert(
+"All copies are already in the library."
+);
+return;
+}
+book.available++;
+displayLibrarianBooks();
+updateDashboard();
+displayBooks(books);
+}
+// ========================================
+// DASHBOARD STATISTICS
+// ========================================
+function updateDashboard() {
+let totalCopies = 0;
+let availableCopies = 0;
+books.forEach(book => {
+totalCopies += book.copies;
+availableCopies += book.available;
+});
+const borrowed =
+totalCopies-availableCopies;
+document
+.getElementById("totalBooks")
+.textContent = totalCopies;
+document
+.getElementById("availableBooks")
+  .textContent = availableCopies;
+document
+.getElementById("borrowedBooks")
+.textContent = borrowed;
+}
+// ========================================
+// START APPLICATION
+// ========================================
+displayBooks(books);
+updateDashboard();
